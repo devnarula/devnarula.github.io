@@ -112,4 +112,4 @@ r = self.radius*math.sqrt(random.random())
 ```
 Turns out this was all I needed to pass the question!
 
-A somewhat seemingly simple leetcode problem that took me through a journey of statistics and reminded me that the content I learn in math lectures might actually be useful in real life!
+Looking back, I did all this research in probability to solve a leetcode problem. I guess, the concepts I learned in STAT 230 might be more useful than I had expected.
