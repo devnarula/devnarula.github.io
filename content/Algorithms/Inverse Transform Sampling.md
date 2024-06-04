@@ -67,4 +67,4 @@ After some digging and venting, I realized the random point generation might not
 
 Ah! This was all I needed to confirm my suspicion. My function was not generating points uniformly. For some reason, there was a higher probability of points being generated towards the center of the circle which caused the WA.
 
-
+But why are my points not uniformly generated? The radius and the angle $\theta$ are both uniformly generated, so I would expect the points to follow a uniform distribution as well.
