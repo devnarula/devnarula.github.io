@@ -57,3 +57,14 @@ class Solution:
         theta = random.random()*2*math.pi
         return [self.x+r*math.cos(theta),self.y+r*math.sin(theta)]
 ```
+And with this solution I got hit with a WA on the last testcase...
+
+I mean what could go wrong?! I know that any point generated fits the bounds of the given circle, so why was I getting Wrong Answer? 
+
+After some digging and venting, I realized the random point generation might not follow uniform distribution. It is pretty difficult to validate the distribution quickly (since its generated randomly!), so I decided to visualize the point generation.
+
+![Visualization of 500 Randomly Generated Points](/Algorithms/img/circles.png)
+
+Ah! This was all I needed to confirm my suspicion. My function was not generating points uniformly. For some reason, there was a higher probability of points being generated towards the center of the circle which caused the WA.
+
+
