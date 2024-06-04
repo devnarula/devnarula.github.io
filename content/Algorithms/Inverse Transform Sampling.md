@@ -68,3 +68,48 @@ After some digging and venting, I realized the random point generation might not
 Ah! This was all I needed to confirm my suspicion. My function was not generating points uniformly. For some reason, there was a higher probability of points being generated towards the center of the circle which caused the WA.
 
 But why are my points not uniformly generated? The radius and the angle $\theta$ are both uniformly generated, so I would expect the points to follow a uniform distribution as well.
+
+I realized that our radius is uniformly distributed in the $[0,r_0]$ which means the probability of a random radius variable is constant. However, the area of the circle grows with the increase in the radius $R$. Currently, the expected number of points for a small radius $r_s$ is equal to the expected number of points for a large radius $r_L$. This resulted in more points concentrated towards the center (lower values of $r$) compared to the edges of the circles.
+
+This implies that the Probability Density Function (PDF) for the random variable $R$ must grow linearly w.r.t to the radius.
+
+$$
+P(R = r) = mr
+$$
+Since, $P(R = r)$ is a valid PDF:
+$$
+\int_{0}^{r_0} mx dx = 1 \rightarrow m = \frac{2}{r_0^2}
+$$
+And our CDF for the radius (R) will be:
+$$
+P(R \leq r) = \int_{0}^{r_0} \frac{2r}{R^2} = \frac{r^2}{r_0^2}
+$$
+
+Now, that leaves us with generating random variable $R$ that follows the CDF $P(R \leq r)$. However, computers are only able to generate random variable over standard uniform distribution $U$ and not for a custom CDF. 
+
+This idea of computer generation for random variables immediately reminded of a concept we learned in STAT 230 at UW!
+
+It is a technique called Inverse Transform Sampling (The title of this blog!). Basically, this technique states that if $F$ is an arbitrary CDF and $U$ is uniform on $[0,1]$ then
+$$
+X = F^{-1} (U)
+$$
+has the CDF $F(x)$
+The proof is evident from:
+$$
+P(X \leq x) = P(F^{-1}(U) \leq x) \\
+P(U \leq F(x)) = F(x)
+$$
+$$
+P(X \leq x) = F(x)
+$$
+This made things a lot simpler since, the inverse of CDF in our case was easy to determine:
+$$
+F^{-1} (U) = R \sqrt{U}
+$$
+Therefore, all I had to was use this equation to determine the randomly generated radius.
+```python
+r = self.radius*math.sqrt(random.random())
+```
+Turns out this was all I needed to pass the question!
+
+A somewhat seemingly simple leetcode problem that took me through a journey of statistics and reminded me that the content I learn in math lectures might actually be useful in real life!
