@@ -1,6 +1,7 @@
 ---
 title: Inverse Transform Sampling
 draft: false
+publish: true
 ---
 The motivation for this blog was a leetcode problem ([Generate Random Point in a Circle](https://leetcode.com/problems/generate-random-point-in-a-circle/description/)) I was solving recently. Since this problem was labelled as medium difficulty, I did not have much expectations going into it.
 

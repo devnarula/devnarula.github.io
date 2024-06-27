@@ -1,6 +1,7 @@
 ---
 title: Dev Narula's Blog
 draft: false
+publish: true
 ---
 
 Hi there 👋
